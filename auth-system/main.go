@@ -9,8 +9,8 @@ func main (){
 	
 	InitDB()
 
-	http.HandleFunc("/signup",SignUp)
-	http.HandleFunc("/login", Login)
+	http.HandleFunc("/signup", RateLimiter(SignUp))
+	http.HandleFunc("/login", RateLimiter(Login))
 	http.HandleFunc("/refreshToken", RefreshToken)
 	http.HandleFunc("/profile", AuthMiddleware(Profile))
 
